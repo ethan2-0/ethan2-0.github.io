@@ -11,7 +11,13 @@
             .css("top", $(this).height() + 30); //Same 38, -8 for its height
         pages.loadPage($(this).attr("goes-to"));
     });
-    var active = $($(".titlebar-item")[0]);
+    var active;
+    if(false || window.location.hash == "") {
+        active = $($(".titlebar-item")[0]);
+    } else {
+        active = $(".titlebar-item[goes-to=" + window.location.hash.replace("#", "") + "]");
+        console.log(active);
+    }
     $(function() {
         active.trigger("click"); //HACK
     });
@@ -28,8 +34,24 @@ var pages = (function() {
                 $(this).hide();
             }
         });
+        history.pushState("", "Navigated to: " + name, "#" + name);
     }
     return {
         loadPage: loadPage
     }
 })();
+(function() {
+    // +==========+
+    // | UI Stuff |
+    // +==========+
+    $(".page-title-hero").attr("data-stellar-background-ratio", "0")
+        .each(function() {
+            $(this).css("background-image", "url(images/" + $(this).attr("image")) + ")";
+            if($(this).attr("offsetx")) {
+                $(this).attr("data-stellar-vertical-offset", $(this).attr("offsetx"));
+            }
+        });
+})();
+//Init Stellar.js
+//Note to self: data-stellar-vertical-offset
+$(window).stellar();

@@ -45,3 +45,11 @@ body {
 .musing {
     position: relative;
 }
+.page-title-hero {
+    height: 300px;
+    color: white;
+    text-align: center;
+    font-size: 64px;
+    font-family: "Open Sans Light", sans-serif;
+    padding-top: 150px;
+}
