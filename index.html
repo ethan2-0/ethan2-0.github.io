@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Ethan's personal website</title>
+        <!-- JQuery -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- My CSS -->
+        <link rel="stylesheet" href="stylesheet.css">
+        <!-- Stellar -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js"></script>
+        <!-- Pure -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    </head>
+    <body style="margin: 0px;">
+        <div id="titlebar">
+            <center>
+                <div class="titlebar-item" goes-to="home">Home</div>
+                <div class="titlebar-item" goes-to="aboutme">About me</div>
+                <div class="titlebar-item musing" goes-to="math">Math</div>
+                <div class="titlebar-item musing" goes-to="programming">Programming</div>
+                <div class="titlebar-item" goes-to="rants">Assorted Rants</div>
+            </center>
+            <div id="titlebar-underline"></div>
+        </div>
+        <div class="page" page="home">
+            Home
+        </div>
+        <div class="page" page="aboutme">
+            About Me
+        </div>
+        <div class="page" page="math">
+            Math
+        </div>
+        <div class="page" page="programming">
+            Programming
+        </div>
+        <div class="page" page="rants">
+            Assorted Rants
+        </div>
+
+        <!-- My JS -->
+        <script src="script.js"></script>
+    </body>
+</html>

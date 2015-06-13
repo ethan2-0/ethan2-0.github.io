@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'Advent Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Advent Pro Regular'), local('AdventPro-Regular'),
+        url(fonts/adventProReg.woff2) format('woff2'),
+        url(fonts/adventProReg.woff) format('woff');
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Source Sans Pro Light'), local('SourceSansPro-Light'),
+        url(fonts/sourceSansProLight.woff2) format('woff2'),
+        url(fonts/sourceSansProLight.woff) format('woff');
+}
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Source Sans Pro'), local('SourceSansPro-Regular'),
+        url(fonts/sourceSansPro.woff2) format('woff2'),
+        url(fonts/sourceSansPro.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(fonts/roboto.woff2) format('woff2'), url(fonts/roboto.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans Light';
+    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Light-webfont.woff') format('woff'), url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal
+}
+@font-face{
+    font-family:'Open Sans';
+    src:url(http://mozorg.cdn.mozilla.net/media/fonts/OpenSans-Regular-webfont.eot);
+    src:url(http://mozorg.cdn.mozilla.net/media/fonts/OpenSans-Regular-webfont.eot?#iefix) format('embedded-opentype'), url(http://mozorg.cdn.mozilla.net/media/fonts/OpenSans-Regular-webfont.woff) format('woff'),url(http://mozorg.cdn.mozilla.net/media/fonts/OpenSans-Regular-webfont.ttf) format('truetype'),url(http://mozorg.cdn.mozilla.net/media/fonts/OpenSans-Regular-webfont.svg#OpenSansRegular) format('svg');
+    font-weight:400;
+    font-style:normal
+}

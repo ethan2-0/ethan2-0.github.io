@@ -1,0 +1,47 @@
+@import url(fonts.css);
+body {
+    font-family: Garamond;
+    color: rgb(51, 51, 51);
+}
+#titlebar {
+    width: 100%;
+    background-color: rgb(51, 51, 51);
+    color: white;
+    font-size: 1px;
+}
+.titlebar-item {
+    display: inline-block;
+    padding: 19px;
+    font-family: "Source Sans Pro", Arial;
+    font-size: 22px;
+    transition: background-color 0.4s;
+    -webkit-transition: background-color 0.4s;
+    cursor: pointer;
+}
+.titlebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+#titlebar-underline {
+    transition: width 0.4s, left 0.4s;
+    -webkit-transition: width 0.4s, left 0.4s;
+    background-color: rgb(187, 62, 50);
+    height: 8px;
+    position: absolute;
+    bottom: 0px;
+    z-index: 1000;
+}
+.musing:before {
+    content: "Musing";
+    display: inline-block;
+    font-family: "Advent Pro";
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    font-size: 14px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2px;
+    border-radius: 2px;
+}
+.musing {
+    position: relative;
+}
