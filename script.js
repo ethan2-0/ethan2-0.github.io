@@ -53,5 +53,4 @@ var pages = (function() {
         });
 })();
 //Init Stellar.js
-//Note to self: data-stellar-vertical-offset
 $(window).stellar();
