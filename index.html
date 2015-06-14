@@ -11,6 +11,10 @@
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js"></script>
         <!-- Pure -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+        <!-- Showdown Markdown Converter -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/showdown/1.0.2/showdown.min.js"></script>
+        <!-- Velocity, the awesome animation library -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.2.2/velocity.min.js"></script>
     </head>
     <body style="margin: 0px;">
         <div id="titlebar">
@@ -25,8 +29,30 @@
             <div id="titlebar-underline"></div>
         </div>
         <div class="page" page="home">
-            <div class="page-title-hero" image="Nylon_Rainbow_by_Sam_Hewitt.jpg" offsetx="-200">
+            <div class="page-title-hero" image="Nylon_Rainbow_by_Sam_Hewitt.jpg" offsetx="400">
                 Ethan's Random Musings
+            </div>
+            <div class="content pure-g">
+                <div class="pure-u-7-24">
+                    <!-- Nothing here -->
+                </div>
+                <div class="pure-u-3-24 outline" id="home-outline"></div>
+                <div class="pure-u-8-24">
+                    <markdown table-of-contents="#home-outline">
+                        This is some markdown
+                        =====================
+                        This is some text under the title.
+                        g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g 
+                        g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g
+                        ## This is a subtitle
+                        This is some text under the subtitle.
+                        ## This is another subtitle
+                        This is some text under the subtitle.
+                        ### This is a sub-sub-title.
+                        ## This is a subtitle.
+                        The sub-sub-title had no text under it.
+                    </markdown>
+                </div>
             </div>
         </div>
         <div class="page" page="aboutme">

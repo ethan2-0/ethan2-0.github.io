@@ -1,6 +1,14 @@
 @import url(fonts.css);
 body {
-    font-family: Garamond;
+    font-family: "FreeSans", Arial;
+    color: rgb(51, 51, 51);
+}
+p {
+    font-family: "FreeSans", Arial;
+    color: rgb(51, 51, 51);
+}
+.pure-g > * {
+    font-family: "FreeSans", Arial !important;
     color: rgb(51, 51, 51);
 }
 #titlebar {
@@ -52,4 +60,16 @@ body {
     font-size: 64px;
     font-family: "Open Sans Light", sans-serif;
     padding-top: 150px;
+}
+h1, h2, h3 {
+    font-family: "Open Sans Light";
+    font-weight: lighter;
+}
+.outline {
+
+}
+.outline-elm {
+    color: rgb(105, 105, 105);
+    text-decoration: underline;
+    cursor: pointer;
 }
