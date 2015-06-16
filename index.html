@@ -169,6 +169,11 @@
                         loggable(9) has 109,238 digits. Loggable(10) takes longer than I'm willing to wait on CPython, but PyPy can compute it quickly; it has 1,092,378 digits. I got
                         bored waiting for loggable(11) after about a minute.
 
+                        ### Naive method rephrased
+
+                        Upon writing the section for the naive section, I realised it's precisely equivalent to 2<sup>b!</sup>, where b is the base. This is *horribly* innefficient,
+                        but it's correct, and easy to write. I can write 2<sup>77!</sup>, and say 2<sup>77!</sup>, even if I never have whatever number 2<sup>77!</sup> expands to.
+
                         ### Slightly less naive method
                         An obvious optimization follows from the observation that, if n is loggable up to b, then it is also loggable up to all of the factors of b. This could be proved
                         by the property that a<sup>b<sup>c</sup></sup> = a<sup>bc</sup>; I'm not going to bother.
