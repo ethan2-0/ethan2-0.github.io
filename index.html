@@ -39,44 +39,192 @@
                 <div class="pure-u-3-24 outline" id="home-outline"></div>
                 <div class="pure-u-8-24">
                     <markdown table-of-contents="#home-outline">
-                        This is some markdown
+                        Scope of this website
                         =====================
-                        This is some text under the title.
-                        g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g 
-                        g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g g
-                        ## This is a subtitle
-                        This is some text under the subtitle.
-                        ## This is another subtitle
-                        This is some text under the subtitle.
-                        ### This is a sub-sub-title.
-                        ## This is a subtitle.
-                        The sub-sub-title had no text under it.
+                        This website is by no means an autobiography or anything similar. It is simply a collection of my musings and such, as well as a place I can refer people to
+                        that will inform them to what they can expect from me.
                     </markdown>
                 </div>
             </div>
         </div>
         <div class="page" page="aboutme">
-            <div class="page-title-hero" image="Backyard_Mushrooms_by_Kurt_Zitzelman.jpg" offsetx="-200">
+            <div class="page-title-hero" image="Backyard_Mushrooms_by_Kurt_Zitzelman.jpg" offsetx="-450">
                 About me
+            </div>
+            <div class="content pure-g">
+                <div class="pure-u-7-24">
+                    <!-- Nothing here -->
+                </div>
+                <div class="pure-u-3-24 outline" id="aboutme-outline"></div>
+                <div class="pure-u-8-24">
+                    <markdown table-of-contents="#aboutme-outline">
+                        About me
+                        ========
+                        ## Who am I?
+                        I'm a person. More tellingly than really anything else I could write: I don't use Google due to privacy concerns.
+                        Anything Google, I don't use it. Period. Even though it's annoying.
+                        ### What are my interests?
+                        Programming, math, and their intersection, crypto. I enjoy using logic in the most mathematical sense, especially where it makes no sense whatsoever.
+
+                        I also do a fair amount of reading about politics, especially politics relating to technology, and mocking Fox News and the crazy things the Republicans say in the
+                        United States.
+
+                        For some reason, I have a fascination for pure math topics, regardless of whether it has real-life applications (things like hypercomplex numbers that really don't
+                        end up getting used much).
+                        ### Things in the world that drive me nuts
+                        There are certain things in the world that seem like they are specifically designed to drive me nuts. They include:
+
+                        * People who write
+                            `
+                                public void something()
+                                {
+                                    //Do something
+                                }
+                            `
+                            as opposed to
+                            `
+                                public void something() {
+                                    //Do something
+                                }
+                            `
+                        * People who declare functions as
+                            `
+                                var foo = function() {
+                                    //Do something
+                                }
+                            `
+                            as opposed to
+                            `
+                                function foo() {
+                                    bar();
+                                }
+                            `
+                        * People who pronounce "Richard Feynman" as "Richard Fineman" (It's pronounced "Faynman", as in "feign death")
+                        * Languages that make me declare and use variables with $'s (*cough* Perl and PHP *cough*)
+                        * Hearing Stephen Harper speak
+                        * People who say "Just *code* something up," whereas it would be more correctly "Just write a program for [something]"
+                        * People who don't know what an artificial intelligence is defined as, and would say that a dishwasher is an artificial intelligence
+                    </markdown>
+                </div>
             </div>
         </div>
         <div class="page" page="math">
-            <div class="page-title-hero" image="Water_Lily_by_Denis_Dugushkin.jpg" offsetx="150">
+            <div class="page-title-hero" image="Water_Lily_by_Denis_Dugushkin.jpg" offsetx="-700">
                 Musings: Math
+            </div>
+            <div class="content pure-g">
+                <div class="pure-u-7-24">
+                    <!-- Nothing here -->
+                </div>
+                <div class="pure-u-3-24 outline" id="math-outline"></div>
+                <div class="pure-u-8-24">
+                    <markdown table-of-contents="#math-outline">
+                        Loggable Numbers
+                        ================
+                        ## Definition
+                        A number n is said to be loggable up to the base b if, for all 1&lt;x&#8804;b, n<sup>1/x</sup> ∈ ℤ.
+
+                        It could similarly be defined with set theory, but I won't bother; it's pretty obvious how one would do that, and is not essential to anything hereinafter.
+
+                        A shorthand is n:b, meaning n is loggable up to b.
+
+                        It makes no sense to say that 64 is loggable up to, for example, 2.5, since, given the definition, that is logically equivalent to saying 64 is loggable up to 2.
+                        ## Examples
+                        The number 64 is loggable up to the base 3:
+
+                        * 64 = 8<sup>2</sup>
+                        * 64 = 4<sup>3</sup>
+
+                        Thus, both the square root of 64 and the cube root of 64 are integers, and so 64 is loggable up to the base 3. However, 64 is not loggable up to 4, since the fourth
+                        root of 64 is approximately 2.29, and is irrational.
+
+                        The number 16777216 is loggable up to the base 4.
+
+                        The number 1329227995784915872903807060280344576 is loggable up to the base 5.
+                        ## Generation
+                        The set of numbers loggable to the base b can be expressed as:
+
+                        {x ∈ ℤ | x<sup>1/b</sup> ∈ ℤ} ∩ {x ∈ ℤ | x<sup>1/(b - 1)</sup> ∈ ℤ} ∩ ... ∩ {x ∈ ℤ | x<sup>1/3</sup> ∈ ℤ} ∩ {x ∈ ℤ | x<sup>1/2</sup> ∈ ℤ}
+
+                        In other words, the task of finding loggable numbers to the base b is simply finding all numbers that are in the union of the sets of numbers whose c<sup>th</sup>
+                        roots, where 1&lt;c&#8804;b, are integers. However, actually enumerating those sets up to the necessary quantities is impractical, so I've mostly come up with other
+                        algorithms.
+
+                        ### Naive method
+
+                        One quickly realizes that we can just iteratively raise, say, 2, to all powers > 1 and &#8804; b. Here's a Python implementation:
+
+                            def loggable(b):
+                                return loggable(b - 1)**b if b > 1 else 2
+
+                        This can also be unwrapped into a for loop:
+
+                            def loggable(b):
+                                running = 2
+                                for x in xrange(2, b + 1):
+                                    running = running**x
+                                return running
+
+                        The unwrapped version would presumably be faster; however, they're both ridiculously slow. In addition, the numbers they come up with are ridiculously large:
+                        loggable(9) has 109,238 digits. Loggable(10) takes longer than I'm willing to wait on CPython, but PyPy can compute it quickly; it has 1,092,378 digits. I got
+                        bored waiting for loggable(11) after about a minute.
+
+                        ### Slightly less naive method
+                        An obvious optimization follows from the observation that, if n is loggable up to b, then it is also loggable up to all of the factors of b. This could be proved
+                        by the property that a<sup>b<sup>c</sup></sup> = a<sup>bc</sup>; I'm not going to bother.
+                        This means that, if we want to find a number that is loggable up to n, we can start at n and work our way down, but not raise to the power of any of the factors of n.
+                        For example, let's say we want to find a number loggable up to four. Here are the steps:
+
+                        At the start, n = 2.
+
+                        1. n = n<sup>4</sup> = 16
+                        2. n = n<sup>3</sup> = 4096
+                        3. We don't need to square n, since 2 is a factor of 4. So, we're done.
+
+                        We get a result, 4096:4. So, our algorithm is correct. Our previous algorithm would have yielded 16,777,216, which is significantly larger.
+
+                        Here's a python implementation:
+
+                            def rrange(top, bottom=1):
+                                r = range(bottom, top)
+                                r.reverse()
+                                return r
+                            def loggable(base):
+                                arr = [False] * (base + 1)
+                                arr[0] = True
+                                arr[1] = True
+                                running = 2
+                                for x in rrange(base + 1):
+                                    if arr[x] == False:
+                                        for a in range(x):
+                                            if a**2 > x:
+                                                break
+                                            if a &lt;= 0:
+                                                continue
+                                            arr[x / a] = True
+                                        running = running**x
+                                return running
+
+                        Previously, loggable(10) was over a million digits long, and was took a few seconds on PyPy. With the new implementation, it takes about a second on CPython and
+                        is 18,208 digits. Also, loggable(11) is easily computible on CPython, and has 200,271 digits, which is less than loggable(10) with the previous implementation.
+                        Although it's impractical with CPython, PyPy can compute loggable(12), with 400,540 digits, almost precisely double the digits of loggable(11). I got bored with
+                        loggable(13).
+                    </markdown>
+                </div>
             </div>
         </div>
         <div class="page" page="programming">
-            <div class="page-title-hero" image="Music_by_tomasino.cz.jpg" offsetx="-600" style="color: black">
+            <div class="page-title-hero" image="Music_by_tomasino.cz.jpg" offsetx="580" style="color: black">
                 Musings: Programming
             </div>
         </div>
         <div class="page" page="rants">
-            <div class="page-title-hero" image="Jelly_Fish_by_RaDu_GaLaN.jpg" offsetx="-400">
+            <div class="page-title-hero" image="Jelly_Fish_by_RaDu_GaLaN.jpg" offsetx="725">
                 Assorted Rants
             </div>
         </div>
         <div class="page" page="projects">
-            <div class="page-title-hero" image="Oak_by_Lyle_Nel.jpg" offsetx="-300">
+            <div class="page-title-hero" image="Oak_by_Lyle_Nel.jpg" offsetx="-500">
                 Projects
             </div>
         </div>

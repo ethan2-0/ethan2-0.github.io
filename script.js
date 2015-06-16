@@ -8,9 +8,12 @@ function getMatchIndices(regex, str) {
     }
     return result;
 }
+String.prototype.contains = function(s) {
+    return this.indexOf(s) !== -1;
+}
 //"This is an id" -> "thisisanid"
 function reduceId(id) {
-    return id.toLowerCase().split(" ").join("");
+    return id.toLowerCase().split(" ").join("").split("-").join("").split(".").join("").split("?").join("");
 }
 //Get the last element of an array
 function last(arr) {
@@ -66,29 +69,30 @@ function last(arr) {
                 }
             });
             var outlineElm = $($(this).attr("table-of-contents"));
-            function doStuff(elm, tree, padding) {
+            function doStuff(tree, padding) {
                 var isArray = (typeof tree.push) != "undefined"
                 if(typeof padding == "undefined") {
                     padding = 0;
                 }
-                console.log(isArray);
                 for(var key in tree) {
                     var value = tree[key];
                     var currElm = $("<div>")
                         .html(isArray ? value : key)
                         .addClass("outline-elm")
                         .css("padding-left", padding)
+                        .attr("reducedId", reduceId(isArray ? value : key))
                         .on("click", function(evt) {
+                            $("#" + $(this).attr("reducedId")).velocity("scroll");
                             evt.stopPropagation();
                             return false;
                         })
-                        .appendTo(elm);
+                        .appendTo(outlineElm);
                     if(!isArray) {
-                        doStuff(currElm, tree[key], padding + 15);
+                        doStuff(tree[key], padding + 15);
                     }
                 }
             }
-            doStuff(outlineElm, tree);
+            doStuff(tree);
             console.log(JSON.stringify(tree, null, 4));
         }
     });
@@ -139,7 +143,8 @@ var pages = (function() {
     // +==========+
     $(".page-title-hero").attr("data-stellar-background-ratio", "0")
         .each(function() {
-            $(this).css("background-image", "url(images/" + $(this).attr("image")) + ")";
+            console.log("url(images/" + $(this).attr("image") + ")");
+            $(this).attr("style", "background-image: url(images/" + $(this).attr("image")) + ")";
             if($(this).attr("offsetx")) {
                 $(this).attr("data-stellar-vertical-offset", (parseInt($(this).attr("offsetx")) + 500) + "");
             }
