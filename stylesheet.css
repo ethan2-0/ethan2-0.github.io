@@ -90,4 +90,11 @@ h1, h2, h3 {
 }
 code {
     white-space: pre;
+    display: block;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    border: 1px solid rgb(232, 232, 232);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 3px;
 }

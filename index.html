@@ -76,28 +76,28 @@
 
                         * People who write
                             `
-                                public void something()
-                                {
-                                    //Do something
-                                }
+                            public void something()
+                            {
+                                //Do something
+                            }
                             `
                             as opposed to
                             `
-                                public void something() {
-                                    //Do something
-                                }
+                            public void something() {
+                                //Do something
+                            }
                             `
                         * People who declare functions as
                             `
-                                var foo = function() {
-                                    //Do something
-                                }
+                            var foo = function() {
+                                //Do something
+                            }
                             `
                             as opposed to
                             `
-                                function foo() {
-                                    bar();
-                                }
+                            function foo() {
+                                bar();
+                            }
                             `
                         * People who pronounce "Richard Feynman" as "Richard Fineman" (It's pronounced "Faynman", as in "feign death")
                         * Languages that make me declare and use variables with $'s (*cough* Perl and PHP *cough*)
@@ -214,6 +214,13 @@
                         is 18,208 digits. Also, loggable(11) is easily computible on CPython, and has 200,271 digits, which is less than loggable(10) with the previous implementation.
                         Although it's impractical with CPython, PyPy can compute loggable(12), with 400,540 digits, almost precisely double the digits of loggable(11). I got bored with
                         loggable(13).
+
+                        ## Best method
+
+                        An even better method would be to go down from the top and, for each level, see if the existing level needs exponentiation. This will catch a few extra cases
+                        that the previous method will not get. This sounds similar to the previous, but it seems to get better results. Code:
+
+                            [TODO]
                     </markdown>
                 </div>
             </div>
