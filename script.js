@@ -13,7 +13,7 @@ String.prototype.contains = function(s) {
 }
 //"This is an id" -> "thisisanid"
 function reduceId(id) {
-    return id.toLowerCase().split(" ").join("").split("-").join("").split(".").join("").split("?").join("");
+    return id.toLowerCase().split(" ").join("").split("-").join("").split(".").join("").split("?").join("").split("+").join("");
 }
 //Get the last element of an array
 function last(arr) {
