@@ -38,7 +38,7 @@ p {
     bottom: 0px;
     z-index: 1000;
 }
-.musing:before {
+/*.musing:before {
     content: "Musing";
     display: inline-block;
     font-family: "Advent Pro";
@@ -52,7 +52,7 @@ p {
 }
 .musing {
     position: relative;
-}
+}*/
 .page-title-hero {
     height: 300px;
     color: white;
@@ -66,7 +66,7 @@ h1, h2, h3 {
     font-weight: lighter;
 }
 .outline {
-
+    font-family: "Source Sans Pro";
 }
 .outline:before {
     font-family: "Advent Pro";
@@ -84,6 +84,7 @@ h1, h2, h3 {
     cursor: pointer;
     transition: color 0.4s;
     -webkit-transition: color 0.1s;
+    font-family: "Source Sans Pro";
 }
 .outline-elm:hover {
     color: rgb(51, 51, 51);

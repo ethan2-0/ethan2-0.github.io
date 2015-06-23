@@ -23,7 +23,7 @@
                 <div class="titlebar-item" goes-to="aboutme">About me</div>
                 <div class="titlebar-item musing" goes-to="math">Math</div>
                 <div class="titlebar-item musing" goes-to="programming">Programming</div>
-                <div class="titlebar-item" goes-to="rants">Assorted Rants</div>
+                <div class="titlebar-item" goes-to="rants">Politics</div>
                 <div class="titlebar-item" goes-to="projects">Projects</div>
             </center>
             <div id="titlebar-underline"></div>
@@ -65,6 +65,7 @@
                         Anything Google, I don't use it. Period. Even though it's annoying.
                         ### What are my interests?
                         Programming, math, and their intersection, crypto. I enjoy using logic in the most mathematical sense, especially where it makes no sense whatsoever.
+                        For example, to "Is the apple in the fridge or out on the counter," I might answer "yes", if I'm trying to be difficult.
 
                         I also do a fair amount of reading about politics, especially politics relating to technology, and mocking Fox News and the crazy things the Republicans say in the
                         United States.
@@ -75,27 +76,23 @@
                         There are certain things in the world that seem like they are specifically designed to drive me nuts. They include:
 
                         * People who write
-                            `
-                            public void something()
+                            `public void something()
                             {
                                 //Do something
                             }
                             `
                             as opposed to
-                            `
-                            public void something() {
+                            `public void something() {
                                 //Do something
                             }
                             `
-                        * People who declare functions as
-                            `
-                            var foo = function() {
+                        * People who declare functions in JS as
+                            `var foo = function() {
                                 //Do something
                             }
                             `
                             as opposed to
-                            `
-                            function foo() {
+                            `function foo() {
                                 bar();
                             }
                             `
@@ -104,13 +101,22 @@
                         * Hearing Stephen Harper speak
                         * People who say "Just *code* something up," whereas it would be more correctly "Just write a program for [something]"
                         * People who don't know what an artificial intelligence is defined as, and would say that a dishwasher is an artificial intelligence
+                        * News networks who display news about the British royal family ahead of news about the real world
+                        ## Programming languages
+                        My favourite languages to write are Python, Java, and Lua, although I don't do much Lua, unfortunately. However, the languages I am most comfortable with are Java,
+                        Python, JS, and C#, even though I think JS is a royal mess. At times I've written PHP, but I was never any good at it, and I wouldn't consider doing anything serious
+                        in PHP. (That's more because I never bothered to learn PHP; I mostly use other web frameworks, or use Firebase and do everything client-side. Also, PHP makes me write
+                        a lot of $'s).
+
+                        I'm familiar with the standard libraries of Java, .NET, and JS, and am reasonably familiar with that of Python, although not nearly as much as that of Java, for example;
+                        I do a lot of internet-searching when I write Python.
                     </markdown>
                 </div>
             </div>
         </div>
         <div class="page" page="math">
             <div class="page-title-hero" image="Golden_leaves_by_Mauro_Campanelli.jpg" offsetx="-700">
-                Musings: Math
+                Math
             </div>
             <div class="content pure-g">
                 <div class="pure-u-7-24">
@@ -235,8 +241,8 @@
             </div>
         </div>
         <div class="page" page="programming">
-            <div class="page-title-hero" image="Kronach_leuchtet_2014_by_Brian_Fox.jpg" offsetx="580" style="color: black">
-                Musings: Programming
+            <div class="page-title-hero" image="Kronach_leuchtet_2014_by_Brian_Fox.jpg" style="color: black">
+                Programming
             </div>
             <div class="content pure-g">
                 <div class="pure-u-7-24">
@@ -247,6 +253,40 @@
                     <markdown table-of-contents="#programming-outline">
                         Fun class declarations
                         ======================
+                        Here's an interesting idea for class declarations (using a JS-like language)
+
+                            class Cartesian(x, y) exports getX, getY, toPolar {
+                                var r = Math.sqrt(x * x + y * y);
+                                var a = Math.atan(x / y);
+                                var cachedPolar = new Polar(r, a);
+                                function getX() {
+                                    return x;
+                                }
+                                function getY() {
+                                    return y;
+                                }
+                                function toPolar() {
+                                    return cachedPolar;
+                                }
+                            }
+                            class Polar(r, a) exports getR, getA, toCartesian {
+                                var x = r * Math.cos(a);
+                                var y = r * Math.sin(a);
+                                var cachedCartesian = new Cartesian(x, y);
+                                function getR() {
+                                    return r;
+                                }
+                                function getA() {
+                                    return a;
+                                }
+                                function toCartesian() {
+                                    return cachedCartesian;
+                                }
+                            }
+
+                        You can write any arbitrary code in the class, and then the exports get exposed from your scope to the outside. You can use it as normal: new Polar(5, 90).toCartesian() gives
+                        new Cartesian(0, 5).
+
                         Command-line calculator
                         =======================
                         ## Using a REPL
@@ -257,7 +297,7 @@
                             ^C
                             ^C
 
-                        to get an approximation of Pi (and it has the advantage of having constants like Math.PI), but node takes a while to start up and you have to double-control-c to exit.
+                        to get an approximation of Pi (and it has the advantage of having constants like Math.PI), but node takes a while to start up and you have to double ^C to exit.
                         Not perfect. You could use Python:
 
                             python
@@ -306,9 +346,37 @@
                             calc "22/7" # 3.1428571428571428
                             echo "22/7" | calc # 3.1428571428571428
 
-                        We now have what we set out for.
+                        ### Using external libraries
+                        We now have what we set out for. But, how can we find, for example, the cube root of 16?
 
-                        A good resource for bc is [http://phodd.net/gnu-bc/](http://phodd.net/gnu-bc/).
+                            calc "64^(1/3)" # 1, incorrect
+                            calc "e(l(64)/3)" # 3.99999..., close enough
+
+                        Although bc can calculate cube roots (as is provably possible, since it's turing complete), it's very cryptic and needs a lot of typing. How about:
+
+                            calc "cbrt(64)" # 4
+                            calc "root(64, 3)" # 4
+
+                        The way one would do this is by including funcs.bc, an external library. Here's the modified script to include funcs.bc, if it is available in ../bc/funcs.bc:
+
+                            #!/bin/bash
+
+                            stdin="$(ls -l /proc/self/fd/0)"
+                            stdin="${stdin/*-> /}"
+                            bcpath="../bc/funcs.bc"
+
+                            if [[ "$stdin" =~ ^/dev/pts/[0-9] ]]; then
+                                { cat $bcpath; echo $1; echo "quit"; } | bc -q -l
+                            else
+                                { cat $bcpath; cat /dev/stdin; echo "quit"; } | bc -q -l
+                            fi
+
+                        Now, the above commands (for cube roots) work.
+
+                        ## Node + math.js
+
+                        It might be worth investigating making a calculator with node and math.js; there's support for things like complex numbers, something bc doesn't have, and it's
+                        more customizable (I'm using a library and my own node script, instead of passing things into the stdin of bc).
 
                     </markdown>
                 </div>
@@ -316,12 +384,68 @@
         </div>
         <div class="page" page="rants">
             <div class="page-title-hero" image="Jelly_Fish_by_RaDu_GaLaN.jpg" offsetx="725">
-                Assorted Rants
+                Politics
+            </div>
+            <div class="content pure-g">
+                <div class="pure-u-7-24">
+                    <!-- Nothing here -->
+                </div>
+                <div class="pure-u-3-24 outline" id="politics-outline"></div>
+                <div class="pure-u-8-24">
+                    <markdown table-of-contents="#politics-outline">
+                        For context, I'm Canadian. The opinions expressed here are mine, and not necessarily those of anyone else.
+
+                        Trans-Pacific Partnership
+                        =========================
+                        My first problem with the TPP is that it's called a free trade agreement. That's never good. But that's not an actual criticism. Here are some.
+
+                        ## Lack of transparency
+
+                        All of the negotiation is being done behind closed doors. The only way we have the text of deals is due to leaks. **I should know about the negotiation of laws
+                        that concern me and my fellow citizens. *There is no reason to negotiate humungus deals behind closed doors other than to prevent meaningful debate.***
+
+                        ## Violations of sovereignty
+
+                        The TPP intentionally restricts the ability of lawmakers to regulate, instead requiring that all measures of the TPP be enforced over the like measures in local law.
+                        Corporations will be able to enforce the TPP themselves and go above all existing laws in the signatory country by participating in lawsuits against signatories. Again,
+                        lawmakers have no control. Corporations become the government.
+
+                        ## Legal enforcement of DRM
+
+                        DRM will be codified in law. DRM, an acronym for Digital Rights Management (or, perhaps more aptly, Digital Restrictions Management), is a technology to allow people to place
+                        arbitrary restrictions on files that are given to you. For example, it might artificially prevent having more than two copies of a song per purchase. It is, however, provably
+                        impossible to enforce this with something like cryptography, so, instead of accepting the 21<sup>st</sup> century, companies instead went crying to lawmakers to impose
+                        arbitrary restrictions that are so easy to circumvent that you sometimes break them by accident. That would be a crime under the TPP.
+
+                        ## Threats for whistleblowers
+
+                        There is a very vaguely worded section in the leaked copies of the TPP that would be justification for harsh criminal punishments for whistleblowers and journalists reporting
+                        on leaks in a purely journalistic capacity. **Whistleblowers are the historical way governements are kept honest. How will they stay honest in the future?**
+                    </markdown>
+                </div>
             </div>
         </div>
         <div class="page" page="projects">
-            <div class="page-title-hero" image="Partitura_by_Vincijun.jpg" offsetx="-500">
+            <div class="page-title-hero" image="Redes_de_hilo_by_Juan_Pablo_Lauriente.jpg" offsetx="600">
                 Projects
+            </div>
+            <div class="content pure-g">
+                <div class="pure-u-7-24">
+                    <!-- Nothing here -->
+                </div>
+                <div class="pure-u-3-24 outline" id="projects-outline"></div>
+                <div class="pure-u-8-24">
+                    <markdown table-of-contents="#projects-outline">
+                        Pager
+                        =====
+                        Pager is a simple SPA library. It allows you to define and load pages without any server round-trips. It's a bit old, and written badly; hence Pager 2.
+                        [GitHub](https://github.com/ethan2-0/pager).
+                        Pager 2
+                        =======
+                        Pager 2 is the second incarnation of Pager. It's a lot simpler, faster, and is not dependant on jQuery.
+                        [GitHub](https://github.com/ethan2-0/pager2).
+                    </markdown>
+                </div>
             </div>
         </div>
         <!-- Just so I can see how the layout pans out -->
