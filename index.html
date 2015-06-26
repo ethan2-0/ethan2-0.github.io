@@ -318,8 +318,8 @@
                                 }
                             }
 
-                        You can write any arbitrary code in the class, and then the exports get exposed from your scope to the outside. You can use it as normal: new Polar(5, 90).toCartesian() gives
-                        new Cartesian(0, 5).
+                        You can write any arbitrary code in the class, and then the exports get exposed from your scope to the outside. You can use it as normal: `new Polar(5, 90).toCartesian()` gives
+                        `new Cartesian(0, 5)` as expected.
 
                         Command-line calculator
                         =======================
@@ -391,13 +391,13 @@
                             calc "cbrt(64)" # 4
                             calc "root(64, 3)" # 4
 
-                        The way one would do this is by including funcs.bc, an external library. Here's the modified script to include funcs.bc, if it is available in ../bc/funcs.bc:
+                        The way one would do this is by including funcs.bc, an external library. Here's the modified script to include funcs.bc, if it is available in /home/ethan/bc/funcs.bc:
 
                             #!/bin/bash
 
                             stdin="$(ls -l /proc/self/fd/0)"
                             stdin="${stdin/*-> /}"
-                            bcpath="../bc/funcs.bc"
+                            bcpath="/home/ethan/bc/funcs.bc"
 
                             if [[ "$stdin" =~ ^/dev/pts/[0-9] ]]; then
                                 { cat $bcpath; echo $1; echo "quit"; } | bc -q -l
@@ -406,6 +406,60 @@
                             fi
 
                         Now, the above commands (for cube roots) work.
+
+                        ### We can go further
+
+                        What if I want to chain them? With the existing setup, the logical thing to try would be:
+
+                            { calc "root(2^32, 4)"; echo " * "; calc "2^2"; } | calc
+
+                        But, this gives the following error message:
+
+                            (standard_in) 721: syntax error
+
+                        Let's look at it a bit more in-depth.
+
+                            { calc "root(2^32, 4)"; echo " * "; calc "2^2"; } | cat
+
+                        yields
+
+                            256.00000000000000000000000000000000000000000000000000
+                             * 4
+
+                        And there lies our problem: the trailing newline from calc. (Note that there's also a newline after the 4). Since newlines are often useful, I decided to add an extra
+                        parameter to calc that goes after all of the others, which removes the trailing newline. Code:
+
+                            #!/bin/bash
+
+                            stdin="$(ls -l /proc/self/fd/0)"
+                            stdin="${stdin/*-> /}"
+                            bcpath="/home/ethan/bc/funcs.bc"
+
+                            if [[ "$stdin" =~ ^/dev/pts/[0-9] ]]; then
+                                if [[ $2 == "d" ]]; then
+                                    { cat $bcpath; echo $1; echo ""; echo "quit"; } | bc -q -l | gawk 'BEGIN{RS="\n+";ORS=""}x{print x}x=RT'
+                                else
+                                    { cat $bcpath; echo $1; echo ""; echo "quit"; } | bc -q -l
+                                fi
+                            else
+                                if [[ $1 == "d" ]]; then
+                                    { cat $bcpath; cat /dev/stdin; echo ""; echo "quit"; } | bc -q -l | gawk 'BEGIN{RS="\n+";ORS=""}x{print x}x=RT'
+                                else
+                                    { cat $bcpath; cat /dev/stdin; echo ""; echo "quit"; } | bc -q -l
+                                fi
+                            fi
+
+                        Now, adding a "d" after the command (i.e. calc "6 + 4" d) removes the trailing newline. Modifying our previous command with the trailing d, we now get:
+
+                            { calc "root(2^32, 4)" d; printf " * "; calc "2^2" d; } | calc
+
+                        which yields
+
+                            1024.00000000000000000000000000000000000000000000000000
+
+                        which is what we wanted.
+
+
 
                         ## Node + math.js
 
