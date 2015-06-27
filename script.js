@@ -33,9 +33,16 @@ function getMatchIndices(regex, str) {
 String.prototype.contains = function(s) {
     return this.indexOf(s) !== -1;
 }
-//"This is an id" -> "thisisanid"
+//"This is an id()" -> "thisisanid"
 function reduceId(id) {
-    return id.toLowerCase().split(" ").join("").split("-").join("").split(".").join("").split("?").join("").split("+").join("");
+    return id.toLowerCase()
+        .split(" ").join("")
+        .split("-").join("")
+        .split(".").join("")
+        .split("?").join("")
+        .split("+").join("")
+        .split("(").join("")
+        .split(")").join("");
 }
 //Get the last element of an array
 function last(arr) {

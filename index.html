@@ -95,8 +95,8 @@
                         About me
                         ========
                         ## Who am I?
-                        I'm a person. More tellingly than really anything else I could write: I don't use Google due to privacy concerns.
-                        Anything Google, I don't use it. Period. Even though it's annoying.
+                        I'm a person. I like eye candy like 60fps animations. I don't use Google due to privacy concerns. Anything Google, I don't use it. Period. Even though it's annoying.
+                        That last part is quite telling of my personality.
                         ### What are my interests?
                         Programming, math, and their intersection, crypto. I enjoy using logic in the most mathematical sense, especially where it makes no sense whatsoever.
                         For example, to "Is the apple in the fridge or out on the counter," I might answer "yes", if I'm trying to be difficult.
@@ -136,6 +136,8 @@
                         * People who say "Just *code* something up," whereas it would be more correctly "Just write a program for [something]"
                         * People who don't know what an artificial intelligence is defined as, and would say that a dishwasher is an artificial intelligence
                         * News networks who display news about the British royal family ahead of news about the real world
+                        * People who equate hacker with cracker, or say "x mod for x game is a hack" when they don't mean hack as in what it feels like Unity (the game engine) is composed
+                        of primarily
                         ## Programming languages
                         My favourite languages to write are Python, Java, and Lua, although I don't do much Lua, unfortunately. However, the languages I am most comfortable with are Java,
                         Python, JS, and C#, even though I think JS is a royal mess. At times I've written PHP, but I was never any good at it, and I wouldn't consider doing anything serious
@@ -149,7 +151,7 @@
             </div>
         </div>
         <div class="page" page="math">
-            <div class="page-title-hero" image="Golden_leaves_by_Mauro_Campanelli.jpg" offsetx="-700">
+            <div class="page-title-hero" image="Golden_leaves_by_Mauro_Campanelli.jpg" offsetx="-350">
                 Math
             </div>
             <div class="content pure-g">
@@ -170,7 +172,7 @@
 
                         It makes no sense to say that 64 is loggable up to, for example, 2.5, since, given the definition, that is logically equivalent to saying 64 is loggable up to 2.
 
-                        1 is loggable a loggable up to any base, since, for any x > 0 ∈ ℝ, x<sup>0</sup> = 1. However, it is not very useful, and so 1 is said to be a *trivial* loggable base
+                        1 is loggable a loggable up to any base, since, for any x ∈ ℝ > 0, x<sup>0</sup> = 1. However, it is not very useful, and so 1 is said to be a *trivial* loggable base
                         b, whereas any other loggable is *nontrivial*.
                         ## Examples
                         The number 64 is loggable up to the base 3:
@@ -181,9 +183,9 @@
                         Thus, both the square root of 64 and the cube root of 64 are integers, and so 64 is loggable up to the base 3. However, 64 is not loggable up to 4, since the fourth
                         root of 64 is approximately 2.29, and is irrational.
 
-                        The number 16777216 is loggable up to the base 4.
+                        The number 4096 is loggable up to the base 4.
 
-                        The number 1329227995784915872903807060280344576 is loggable up to the base 5.
+                        The number 1152921504606846976 is loggable up to the base 5.
                         ## Generation
                         The set of numbers loggable to the base b can be expressed as:
 
@@ -210,7 +212,7 @@
                                     running = running**x
                                 return running
 
-                        The unwrapped version would presumably be faster; however, they're both ridiculously slow. In addition, the numbers they come up with are ridiculously large:
+                        The unwrapped version would presumably be faster; however, they're both ridiculously slow. In addition, the numbers this comes up with are ridiculously large:
                         loggable(9) has 109,238 digits. Loggable(10) takes longer than I'm willing to wait on CPython, but PyPy can compute it quickly; it has 1,092,378 digits. I got
                         bored waiting for loggable(11) after about a minute.
 
@@ -466,6 +468,36 @@
                         It might be worth investigating making a calculator with node and math.js; there's support for things like complex numbers, something bc doesn't have, and it's
                         more customizable (I'm using a library and my own node script, instead of passing things into the stdin of bc).
 
+                        JS Sandboxes
+                        ============
+
+                        What if you have untrusted JS code that you want to run on your website, without compromising its security or trust with its users (for example, can the untrusted
+                        code make hundreds of gigabytes worth of AJAX requests?), and without, for example, writing a JS interpreter in JS itself, because that would be slow?
+
+                        ## WebWorkers to the rescue
+
+                        I immediately thought: WebWorkers! They can't see the DOM, or really anything important, without postMessage, which I would easily be able to chech for validity
+                        (I'd be the one implementing the postMessage handlers), and an infinite loop won't freeze the page. After some further testing, things like resource starving don't
+                        seem to work very well (even on a single-core Virtualbox VM with 2GB of RAM).
+
+                        ## Disabling access to builtins
+
+                        The next thing is disallowing AJAX. (I would allow it through postMessage, or possibly just my own wrapper over it, but I would limit the bandwidth, etc). I quickly
+                        realized that disabling individual objects worked perfectly -- I could, for example, disallow access to postMessage by simply assigning it to null. But, how would I
+                        disallow access to all objects (with a whitelist)? I could have a file that I import which would assign all of the known objects to null. But, what if a new one
+                        appeared, say in a new browser version, that is fine on its own, but in these circumstances, undermines the security?
+
+                        The obvious solution is to iterate over the self object (the WebWorker equivalent of window), and assign each to null. But, that presents its own disadvantages;
+                        for example, you'd need to use eval, and eval is slow and bad practice.
+
+                        ### Arbitrary JS with loadScripts()
+
+                        Instead of doing something that's bad practice, do something that's almost exactly equivalent but will cause less people to yell at you! What I ended up doing
+                        is looping over the self object, and appending to a string. If prop is the name of the property of self, "var prop = null;" will be appended to the string. Then,
+                        I convert the string to a data URL, and then pass that into loadScripts(). Then, the script to be sandboxed can be loaded. (Note that, for this, you have to allow
+                        the script to run loadScripts(), which may be problematic). Alternatively, you can grab the script that you're about to load via AJAX, and then append it to the
+                        data URL that you're loading; this is better under certain circumstances.
+
                     </markdown>
                 </div>
             </div>
@@ -514,7 +546,7 @@
             </div>
         </div>
         <div class="page" page="projects">
-            <div class="page-title-hero" image="Redes_de_hilo_by_Juan_Pablo_Lauriente.jpg" offsetx="600">
+            <div class="page-title-hero" image="Redes_de_hilo_by_Juan_Pablo_Lauriente.jpg" offsetx="-350">
                 Projects
             </div>
             <div class="content pure-g">
