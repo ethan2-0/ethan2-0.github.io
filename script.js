@@ -35,14 +35,12 @@ String.prototype.contains = function(s) {
 }
 //"This is an id()" -> "thisisanid"
 function reduceId(id) {
-    return id.toLowerCase()
-        .split(" ").join("")
-        .split("-").join("")
-        .split(".").join("")
-        .split("?").join("")
-        .split("+").join("")
-        .split("(").join("")
-        .split(")").join("");
+    var chars = " -.?+-*/(){}&^%$#@!";
+    id = id.toLowerCase();
+    for(var i = 0; i < chars.length; i++) {
+        id = id.split(chars[i]).join("");
+    }
+    return id;
 }
 //Get the last element of an array
 function last(arr) {
